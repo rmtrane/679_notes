@@ -214,18 +214,7 @@ To get a log of changes, use `git log`.
 * `git remote -v`: check if any remote repositories are connected to the local repository
 * `git remote add ...`: add local repository to remote repository
 
-
-
-
-
-
-
-
-
-
-
-
-
+To remove something already added (say you did `git add .` and regret including `proj.Rproj`....), do `git rm --cached proj.Rproj`. 
 
 
 
