@@ -205,4 +205,38 @@ grep -v "^>" tb1.fasta | grep -oni [^acgt]
 To get a log of changes, use `git log`. 
 
 
+## 9/26 Lecture: More on git
+
+* To turn a git repository into a normal folder, simply delete the .git folder
+* `git push`: transfer local changes to github
+* `git pull`: transfer changes from github to local repository
+* `git clone`: clone a github repository to a new local repository
+* `git remote -v`: check if any remote repositories are connected to the local repository
+* `git remote add ...`: add local repository to remote repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

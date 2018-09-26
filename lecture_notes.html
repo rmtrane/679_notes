@@ -185,6 +185,7 @@ $(document).ready(function () {
 <h2>9/12 Lecture 3</h2>
 <div id="homework-due-1" class="section level3">
 <h3>Homework due</h3>
+<p>Tips and tricks:</p>
 <ul>
 <li><code>wc</code> for word count.
 <ul>
@@ -244,7 +245,10 @@ $(document).ready(function () {
 <div id="exercise-2" class="section level3">
 <h3>Exercise 2</h3>
 <ul>
-<li>Use ` around code to evaluate first before saving to variable.</li>
+<li>Use ` around code to evaluate first before saving to variable.
+<ul>
+<li>might be the same thing as <code>(...)</code>?? Do more testing!</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -265,9 +269,79 @@ $(document).ready(function () {
 <p><code>xargs</code>: * use what you provide as argument to command instead of input * <code>find . -name '*.txt' | wc -l</code> vs <code>find . -name '*.txt' | xargs wc -l</code> - note the use of single quotations. This ensures that we get list of all files ending with <code>.txt</code>, not just files from the current folder</p>
 <div id="regular-expressions" class="section level3">
 <h3>Regular Expressions</h3>
-<hr />
-<p><code>.</code> | any one character</p>
+<ul>
+<li><code>.</code>: any one character</li>
+<li><code>^</code>: beginning of the line (only if placed first)</li>
+<li><code>$</code>: end of line (only if placed last)</li>
+<li><code>[aBc]</code>: anything in <code>a</code> or <code>B</code> or <code>c</code></li>
+<li><code>[^aBc]</code>: anything but… i.e. negation of above</li>
+<li><code>\w</code>: any word character: letter, number, or “_“. Also <code>[[:alnum::]_]</code>. (<code>[:alnum:]</code> means any alphanumeric character. Include <code>_</code> to get alphanumeric of underscore)</li>
+<li><code>\W</code>: opposite of <code>\w</code>, i.e. not word</li>
+<li><code>\d</code>: any single digit. Also: <code>[[:digit:]]</code> or <code>[0-9]</code>.</li>
+<li><code>\D</code>: opposite of <code>\d</code>, i.e. not digit</li>
+<li><code>\s</code>: any white character: single space, <code>\t</code>(tab), <code>\n</code> (line feed), <code>\r</code> (carriage return). Also <code>[[:space:]]</code></li>
+<li><code>\S</code>: opposite of <code>\s</code>. I.e. not white character</li>
+<li><code>\b</code>:</li>
+<li><code>+</code>: one or more of previous</li>
+<li><code>?</code>: zero or one of the previous</li>
+<li><code>*</code>: zero or more of the previous</li>
+<li><code>{4}</code>: 4 of the previous</li>
+<li><code>{4,6}</code>: between 4 and 6 of the previous</li>
+<li><code>{4,}</code>: 4 or more of the previous</li>
+</ul>
+<p>Some practice with <code>grep</code>:</p>
+<pre class="{bash}"><code>## Simply displays the text
+echo abc a g ef$ g
+## Returns the strings with all a's colored
+echo abc a g ef$ g | grep --color 'a'    # 2 matches
+## Returns the strings with only the first a colored (because of ^)
+echo abc a g ef$ g | grep --color '^a'   # 1 match only: first one
+## Returns the strings with all g's colored
+echo abc a g ef$ g | grep --color 'g'    # 2 matches
+## Returns the strings with only the last all g colored (because of $)
+echo abc a g ef$ g | grep --color 'g$'   # 1 match
+## Returns nothing since the last character isn't f
+echo abc a g ef$ g | grep --color 'f$'   # no match
+## Returns nothing since the last two characters aren't 'f$'
+echo abc a g ef$ g | grep --color 'f\$'  # match. mind the single quotes.
+## Why does this match? Why isn't $ interpreted as variable begin? A: $ when placed at the end of the line, is interpreted as end of line. When it is not end of line, it is interpreted as \$. 
+echo ^abc a g ef$ g | grep --color '$ '  # match
+## No match, since the first character isn't a
+echo ^abc a g ef$ g | grep --color '^a'  # no match
+## Match because of `\` -- this ensures that we look for the character
+echo ^abc a g ef$ g | grep --color '\^a' # match
+## Match -- the first two characters are `^a`
+echo ^abc a g ef$ g | grep --color '^^a' # match</code></pre>
+<pre class="{bash}"><code>cd vsbuffalo/bds-files/chapter-03-remedial-unix/
+
+## First, get all lines where the first character is NOT &quot;&gt;&quot;, (-v specifies line) then every line that contains caracters that are not ACGTacgt. 
+grep -v &quot;^&gt;&quot; tb1.fasta | grep -on [^ACGTacgt]
+
+## Alternatively, specify case insensitivity
+grep -v &quot;^&gt;&quot; tb1.fasta | grep -oni [^acgt]</code></pre>
 </div>
+</div>
+<div id="lecture-introduction-to-git" class="section level2">
+<h2>9/24 Lecture: Introduction to git</h2>
+<ul>
+<li>Snapshots of a project. commit = snapshot</li>
+<li>git stores the changes between snapshots/commits, not complete files</li>
+<li>data is stored in a special <code>.git</code> directory</li>
+<li>easily restore project at a previous snapshot</li>
+<li>each collaborator has the project on their local machine, and then there’s a remote copy on GitHub. Collaborators “pull” from and “push” to GitHub.</li>
+</ul>
+<p>To get a log of changes, use <code>git log</code>.</p>
+</div>
+<div id="lecture-more-on-git" class="section level2">
+<h2>9/26 Lecture: More on git</h2>
+<ul>
+<li>To turn a git repository into a normal folder, simply delete the .git folder</li>
+<li><code>git push</code>: transfer local changes to github</li>
+<li><code>git pull</code>: transfer changes from github to local repository</li>
+<li><code>git clone</code>: clone a github repository to a new local repository</li>
+<li><code>git remote -v</code>: check if any remote repositories are connected to the local repository</li>
+<li><code>git remote add ...</code>: add local repository to remote repository</li>
+</ul>
 </div>
 
 
