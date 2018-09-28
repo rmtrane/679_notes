@@ -216,10 +216,18 @@ To get a log of changes, use `git log`.
 
 To remove something already added (say you did `git add .` and regret including `proj.Rproj`....), do `git rm --cached proj.Rproj`. 
 
+### Merges
+
+This is important!! When you `git pull` and the online repository has changes that are not directly compatible with your own local repository, 
 
 
+## 10/1 Lecture: 
 
+### From homework:
 
+* `"$@"` means "all arguments", i.e. `"$1"`, `"$2"`, ...
+* `bash -x` will enable debug mode. For loops, for example, each iteration of the loop will be printed to the console
+* `grep -r` will search recursively through files
 
 
 
