@@ -18,7 +18,7 @@ output: html_document
     * note all your questions.
         * Fairly simple stuff. Went through shell commands such as `cd`, `ls`, etc. Main takeaways
             - root is `/`
-            - relative versus absolute paths using `.` and `..`. **Tip:** In projects, use relative paths as much as possible.
+            - relative versus absolute paths using `.` and `..`. **Tip**: In projects, use relative paths as much as possible.
             - Shortcuts: `.` (current folder), `..` (one level up), `~` (user's home folder), and `-` (previous working directory)
             - `!` can be used to repeat commands. Use `history` to get a list of previous commands, then `!602` will repeat command number 602.
 
@@ -157,7 +157,7 @@ Command substitution with `$()`:
 
 Some practice with `grep`:
 
-```{bash}
+```bash
 ## Simply displays the text
 echo abc a g ef$ g
 ## Returns the strings with all a's colored
@@ -182,7 +182,7 @@ echo ^abc a g ef$ g | grep --color '\^a' # match
 echo ^abc a g ef$ g | grep --color '^^a' # match
 ```
 
-```{bash}
+```bash
 cd vsbuffalo/bds-files/chapter-03-remedial-unix/
 
 ## First, get all lines where the first character is NOT ">", (-v specifies line) then every line that contains caracters that are not ACGTacgt.
@@ -307,3 +307,99 @@ Number of A's in new file:
 ```bash
 sed -E 's/[^A]+//g' tableofSNPs_min_fixed.csv | wc -w
 ```
+
+
+### In Lecture
+
+A bunch about permissions (`chmod`), `PATH`, ~/.bash_profile, etc. All very familiar.
+
+Re: `chmod` options:
+
+* `u`, `g`, `o`: user, group, other; `a` for all
+
+
+## 10/8 Lecture:
+
+### In Lecture
+
+A bunch on git.
+
+* `branch`
+* `checkout`
+* `merge`
+    * When you want to merge, it's important you're on the branch you want to add the changes to.
+    * Make sure you have the most recent version, i.e. do `git pull` before you merge.
+
+## 10/10
+
+### In lecture
+
+* `awk`
+    * for quick text processing of tabular data
+    * `awk pattern { action } filename`
+        * look for `pattern`, do `action`
+    * pattern: put regexp in slashes "/^chr\d/"
+    * if no action is given, line is printed when pattern matched
+    * combine patterns with `&&` and `||`
+        * if within regular expression, use `|` (just one)
+        * examples:
+            * `awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed` not in regular expression
+            * `awk '$1 ~ /chr2|chr3/ { print $0 "\t" $3 - $2 }'` in regular expression
+    * variables:
+        * `$0` = entire line, `$1` = first field, `$2` = second filed, ...
+        * `NR` = current record (line) number
+        * `NF` = number of fields (columns) on current line
+        * example:
+            * `awk '{ print $2 "\t" $3 }' example.bed` works like `cut -f2,3`
+    * Combare with `<=`, `==`, ...
+        * example:
+            * `awk '$3 - $2 > 18' example.bed` will print all lines where the pattern `$3 - $2 > 18` is true
+    * `awk` comes with its own built-in functions (`exit`, `sub(regexp, replacement, string)`, `substr(string, i,j)`, `split(string, array, delimiter)`, ...)
+    * default is to separate fields by tab. Use `-F ","` to change to comma
+    * to include shell variables, use `-v t=...`
+        * example
+            * `awk -v t=$threshold '$3 - $2 > t' example.bed`
+    * can do for loops:
+        * example
+            * calculate mean feature length:
+              `awk 'BEGIN{ s = 0 }; { s += ($3-$2) }; END{ print "mean: " s/NR };' example.bed`
+
+* `wget`
+    * download data from the internet
+    * `-r` if you want to download files recursively
+    * `-l` with `-r` to limit the level or maximum depth: `- 1` to go only 1 link away
+    * `--accept-regex` to limit what should be downloaded.
+        * for example `--accept-regex '\.fasta|\.txt'` will only download files that match `.fasta` or `.txt`
+    * `-nd`(`--no-directory`) to not re-create directory hierachy
+    * use `--limit-rate=50k` or `-w 1` to wait 1 second between file downloads
+
+
+## 10/15
+
+### Peer-review
+
+From Hao-Chen's script: `basename -s 'extension' ...` will return the basename without the `'extension'`!
+
+For example, `basename -s '.log' log/bt1.log` will return `bt1`.
+
+### In lecture
+
+SSH into remote machines. `hostname`
+
+When copying from/to remote machine, `scp -p` will preserve time information.
+
+`tmux` instead of `nohup` for multiple processes/running in background while logged out.
+
+## 10/17
+
+### In-lecture
+
+Introduction to python, ipython, jupyter lab/notebook. Using `numpy`, `matlibplot`. See the python notebook `py_lect1_01` [here](../swc-python/data/py_lect_01.ipynb).
+
+## 10/22
+
+### Homework
+
+Finished the loop part of the SCW (find it [here](http://swcarpentry.github.io/python-novice-inflammation/02-loop/)). My work is in [this](loop_exercise.ipynb) jupyter notebook. 
+
+
