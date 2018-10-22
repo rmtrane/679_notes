@@ -403,4 +403,4 @@ Introduction to python, ipython, jupyter lab/notebook. Using `numpy`, `matlibplo
 Finished the loop part of the SCW (find it [here](http://swcarpentry.github.io/python-novice-inflammation/02-loop/)). My work is in [this](loop_exercise.ipynb) jupyter notebook. 
 
 
-This is a very cool edit.
+This is a very cool edit. SUPER COOL!!!!
