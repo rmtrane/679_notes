@@ -400,6 +400,8 @@ Introduction to python, ipython, jupyter lab/notebook. Using `numpy`, `matlibplo
 
 ### Homework
 
-Finished the loop part of the SCW (find it [here](http://swcarpentry.github.io/python-novice-inflammation/02-loop/)). My work is in [this](loop_exercise.ipynb) jupyter notebook. 
+Finished the loop part of the SCW (find it [here](http://swcarpentry.github.io/python-novice-inflammation/02-loop/)). My work is in [this](loop_exercise.ipynb) jupyter notebook.
 
+### Homework: `git branch` exercise
 
+Created a new branch using `git branch my_new_branch`, switched to said branch using `git checkout my_new_branch`, and then added this section to my `lecture_notes.md`. Then committed the changes on the new branch.
