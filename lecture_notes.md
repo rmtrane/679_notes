@@ -405,3 +405,5 @@ Finished the loop part of the SCW (find it [here](http://swcarpentry.github.io/p
 ### Homework: `git branch` exercise
 
 Created a new branch using `git branch my_new_branch`, switched to said branch using `git checkout my_new_branch`, and then added this section to my `lecture_notes.md`. Then committed the changes on the new branch.
+
+changing the notes added by ralph.
