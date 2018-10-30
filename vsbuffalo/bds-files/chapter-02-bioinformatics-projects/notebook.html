@@ -1,0 +1,24 @@
+<h1 id="zea-mays-snp-calling"><em>Zea Mays</em> SNP Calling</h1>
+<p>We sequenced three lines of <em>zea mays</em>, using paired-end sequencing. This sequencing was done by our sequencing core and we received the data on 2013-05-10. Each variety should have <strong>two</strong> sequences files, with suffixes <code>_R1.fastq</code> and <code>_R2.fastq</code>, indicating which member of the pair it is.</p>
+<h2 id="sequencing-files">Sequencing Files</h2>
+<p>All raw FASTQ sequences are in <code>data/seqs/</code>:</p>
+<pre><code>$ find data/seqs -name &quot;*.fastq&quot;
+data/seqs/zmaysA_R1.fastq
+data/seqs/zmaysA_R2.fastq
+data/seqs/zmaysB_R1.fastq
+data/seqs/zmaysB_R2.fastq
+data/seqs/zmaysC_R1.fastq
+data/seqs/zmaysC_R2.fastq</code></pre>
+<h2 id="quality-control-steps">Quality Control Steps</h2>
+<p>After the sequencing data was received, our first stage of analysis was to ensure the sequences were high quality. We ran each of the three lines' two paired-end FASTQ files through a quality diagnostic and control pipeline. Our planned pipeline is:</p>
+<ol style="list-style-type: decimal">
+<li>Create base quality diagnostic graphs.</li>
+<li>Check reads for adapter sequences.</li>
+<li>Trim adapter sequences.</li>
+<li>Trim poor quality bases.</li>
+</ol>
+<p>Recommended trimming programs:</p>
+<ul>
+<li>Trimmomatic</li>
+<li>Scythe</li>
+</ul>

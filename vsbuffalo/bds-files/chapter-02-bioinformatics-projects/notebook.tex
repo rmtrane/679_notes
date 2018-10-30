@@ -1,0 +1,52 @@
+\section{\texorpdfstring{\emph{Zea Mays} SNP
+Calling}{Zea Mays SNP Calling}}\label{zea-mays-snp-calling}
+
+We sequenced three lines of \emph{zea mays}, using paired-end
+sequencing. This sequencing was done by our sequencing core and we
+received the data on 2013-05-10. Each variety should have \textbf{two}
+sequences files, with suffixes \texttt{\_R1.fastq} and
+\texttt{\_R2.fastq}, indicating which member of the pair it is.
+
+\subsection{Sequencing Files}\label{sequencing-files}
+
+All raw FASTQ sequences are in \texttt{data/seqs/}:
+
+\begin{verbatim}
+$ find data/seqs -name "*.fastq"
+data/seqs/zmaysA_R1.fastq
+data/seqs/zmaysA_R2.fastq
+data/seqs/zmaysB_R1.fastq
+data/seqs/zmaysB_R2.fastq
+data/seqs/zmaysC_R1.fastq
+data/seqs/zmaysC_R2.fastq
+\end{verbatim}
+
+\subsection{Quality Control Steps}\label{quality-control-steps}
+
+After the sequencing data was received, our first stage of analysis was
+to ensure the sequences were high quality. We ran each of the three
+lines' two paired-end FASTQ files through a quality diagnostic and
+control pipeline. Our planned pipeline is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create base quality diagnostic graphs.
+\item
+  Check reads for adapter sequences.
+\item
+  Trim adapter sequences.
+\item
+  Trim poor quality bases.
+\end{enumerate}
+
+Recommended trimming programs:
+
+\begin{itemize}
+\tightlist
+\item
+  Trimmomatic
+\item
+  Scythe
+\end{itemize}

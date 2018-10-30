@@ -410,3 +410,69 @@ Thanks to Nathanial for the following edit:
 
 
 Created a new branch using `git branch my_new_branch`, switched to said branch using `git checkout my_new_branch`, and then added this section to my `lecture_notes.md`. Then committed the changes on the new branch.
+
+
+### In lecture
+
+Short introduction to floating point numbers. (For more, see notes from STAT771 [here](https://rmtrane.github.io/STAT771_notes/floating-point-format.html).)
+
+Notes on python types:
+
+* `True/False` boolean
+* convert types:
+    * `float(5)` convertes the integer `5` to floating point `5.0`
+    * `bool(1.3)` will be converted to `True`, `bool(0)`, `bool(None)` are both `False`
+
+Formating numbers as strings:
+
+```python
+"%s %s hello %s" % (5, 5.8, "5")
+"%d %d %d world" % (5, 5.8, int("51"))
+"%.2f %.2f %.1e" % (5, float(5.8), float("51.2"))
+"{} hello {} world {}".format(5, "5.8", 51.2)
+"{:.2f} hello {:+} world {:.1e}".format(5, 5.8, 51.2)
+```
+
+Types with multiple elements:
+
+* lists: create using `[1,2]`
+    * lists are mutable, i.e. you can change the values
+* tubbles: create using `(1,2)`
+    * lists are immutable!
+
+## 10/24
+
+### Homework
+
+Sections 3 and 5 of the SCW. See solutions [here](python_homework).
+
+
+### In lecture
+
+A few things about tuples
+
+* array sizes are given as tuples
+* types of arguments to functions, such as `(float, int)`
+* a tuple with one value is noted as `(6.5,)`
+* great for exchanging values between variables:
+
+```python
+left = 'L'
+right = 'R'
+
+(left, right) = (right, left)
+## Actually don't need the parentheses
+left, right = right, left
+```
+
+A few useful functions for working with lists:
+
+* `.append(x)`
+    * add element `x` to the end of a list. Given a list `ll`, we can add `5` using `ll.append(5)`
+* `.extend([x])`
+    * 
+* `.insert(i,x)`
+* `.reverse()`
+* `.pop()`
+* `.sort()`
+* `sorted()`

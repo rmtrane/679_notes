@@ -157,7 +157,7 @@ Command substitution with `$()`:
 
 Some practice with `grep`:
 
-```bash
+```{bash}
 ## Simply displays the text
 echo abc a g ef$ g
 ## Returns the strings with all a's colored
@@ -182,10 +182,10 @@ echo ^abc a g ef$ g | grep --color '\^a' # match
 echo ^abc a g ef$ g | grep --color '^^a' # match
 ```
 
-```bash
+```{bash}
 cd vsbuffalo/bds-files/chapter-03-remedial-unix/
 
-## First, get all lines where the first character is NOT ">", (-v specifies line) then every line that contains caracters that are not ACGTacgt.
+## First, get all lines where the first character is NOT ">", (-v specifies line) then every line that contains caracters that are not ACGTacgt. -n specifies that we want to return the number of times each character occurs as well.
 grep -v "^>" tb1.fasta | grep -on [^ACGTacgt]
 
 ## Alternatively, specify case insensitivity
@@ -266,19 +266,19 @@ This is important!! When you `git pull` and the online repository has changes th
 
 To fix column 2, we search for numbers between quotation marks. There is always at least one comma, but the second is only present sometimes. Hence the `?` (i.e. 0 or 1 comma). We send the result to a new file called `tableofSNPs_fixed.csv`.
 
-```bash
+```{bash}
 sed -E 's/\"([0-9]+),([0-9]+),?([0-9]+)\"/\1\2\3/g' tableofSNPs.csv > tableofSNPs_min_fixed.csv
 ```
 
 To check that it worked, I use the following line. This will look for chunks of characters that are not commas and replace them with a single space. `wc -lw` then returns the number of lines and the number of words. If the previous command worked, the number of lines times 3 should equal the number of words.
 
-```bash
+```{bash}
 sed -E 's/([^,]+)/ /g' tableofSNPs_min_fixed.csv | wc -lw
 ```
 
 The following one-liner switches A's for T's and T's for A's. Since I couldn't figure out how to do two switches at once, I first switched A's with Q's, then T's with A's, and finally Q's with T's.
 
-```bash
+```{bash}
 sed -E 's/A/Q/g;s/T/A/g;s/Q/T/g' tableofSNPs_min_fixed.csv > tableofSNPs_fixed_min_AT_fixed.csv
 ```
 
@@ -286,25 +286,25 @@ To check that it worked, I count the number of A's and T's, respectively, in the
 
 Number of T's in new file:
 
-```bash
+```{bash}
 sed -E 's/[^T]+//g' tableofSNPs_fixed_min_AT_fixed.csv | wc -w
 ```
 
 Number of A's in new file:
 
-```bash
+```{bash}
 sed -E 's/[^A]+//g' tableofSNPs_fixed_min_AT_fixed.csv | wc -w
 ```
 
 Number of T's in old file:
 
-```bash
+```{bash}
 sed -E 's/[^T]+//g' tableofSNPs_min_fixed.csv | wc -w
 ```
 
 Number of A's in new file:
 
-```bash
+```{bash}
 sed -E 's/[^A]+//g' tableofSNPs_min_fixed.csv | wc -w
 ```
 
