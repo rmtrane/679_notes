@@ -193,7 +193,6 @@ grep -v "^>" tb1.fasta | grep -oni [^acgt]
 ```
 
 
-
 ## 9/24 Lecture: Introduction to git
 
 * Snapshots of a project. commit = snapshot
