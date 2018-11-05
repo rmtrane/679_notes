@@ -6,8 +6,8 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", type=int, help = "total number of items to choose from")
 parser.add_argument("-k", type=int, help = "number of items to choose")
-parser.add_argument("--log", action="store_true", help = "returns the log binomial coefficient")
-parser.add_argument("--test", action="store_true", help="tests the module and quits")
+parser.add_argument("-l", "--log", action="store_true", help = "returns the log binomial coefficient")
+parser.add_argument("-t", "--test", action="store_true", help="tests the module and quits")
 args = parser.parse_args()
 
 def logfactorial(n, k = 0):
@@ -48,7 +48,7 @@ def choose(n,k, log = False):
     assert int(n) == n, 'Error: inputs should be an integer -- n it is not!'
     assert n > 0, 'Error: inputs should be positive -- n is not'
     assert int(k) == k, 'Error: inputs should be an integer -- k is not!'
-    assert n > 0, 'Error: input should be positive -- k is not'
+    assert k > 0, 'Error: input should be positive -- k is not'
 
     if n < k:
         return(0)
@@ -56,21 +56,29 @@ def choose(n,k, log = False):
         result = logfactorial(n,k) - logfactorial(n-k)
 
     if not log:
-        result = round(math.exp(result))
+        ## Note: use int(round(...)) to force round to nearest integer, and return integer.
+        ## Using only round will return float, using only integer, will return only integer part of number.
+        ## For example, int(8.9) = 8
+        result = int(round(math.exp(result)))
 
     return(result)
 
-if not args.test and __name__ == '__main__':
-    if args.n<=0:
-        raise Exception("argument -n must be positive")
-    if args.k<0:
-        raise Exception("argument -k must be 0 positive")
-
+## If run as script (i.e. not imported)...
 if __name__ == '__main__':
-    if args.test:
+    ## ... and --test not specified:
+    if not args.test:
+        ## - check n
+        if args.n<=0:
+            raise Exception("argument -n must be positive")
+        ## - check k
+        elif args.k<0:
+            raise Exception("argument -k must be 0 positive")
+        ## if both n and k pass, run and print choose with user specified values
+        else:
+            print(choose(args.n, args.k, args.log))
+    else:
+        ## ... if --test is specified, run tests.
         print("Testing the module...")
         import doctest
         doctest.testmod()
         print("DONE!")
-    else:
-        print(choose(args.n, args.k, args.log))
